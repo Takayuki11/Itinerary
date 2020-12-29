@@ -1,0 +1,25 @@
+<div class="container mx-auto" style="width: 80vw">
+    <div class="row">
+        <div class="col-12 col-md-3">
+            <div class="left">
+                <input type="text">
+            </div>
+        </div>
+        <div class="col-12 col-md-9">
+            <ul>
+                <% @places.each do |place| %>
+                    <li class="border-top border-bottom" style="list-style: none">
+                        <div class="d-flex">
+                            <div class="col-3">画像</div>
+                            <div class="col-9">
+                                <p><%= place.spot %></p>
+                                <p><%= place.address %></p>
+                                <p style="word-wrap: break-word;"><%= place.detail %></p>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
