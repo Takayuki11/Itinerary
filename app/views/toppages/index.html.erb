@@ -1,32 +1,48 @@
 <div class="fade-img">
-  <img src="assets/A3QqDivSjDLEPRM1608711427_1608711465.jpg" class="picture">
+    <img src="assets/A3QqDivSjDLEPRM1608711427_1608711465.jpg" class="picture">
+
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+        <div class="find text-center">
+            <div class="form-group" style="width: 300px;">
+                <%= f.text_field :spot, :placeholder => "Spot your place!!", class: 'form-control' %>
+            </div>
+        
+            <%= f.submit 'Search', class: 'btn btn-primary' %>
+        </div>
+    <% end %>
 </div>
 
 <div class="container mx-auto" style="width: 80vw">
-    <div class="text-center">
-        <h2>旅好きが集まる場所</h2>
+    
+    <div class="text-center mt-4 description">
+        <h1>旅好きが集まる場所</h2>
+        <p class="mt-4">
+            Itineraryは旅好きが今までに行ったお気に入りの場所を共有する場所です。
+            みなさんの旅を思い出の残る楽しい旅にできるようサポートします。
+            準備ができたら、行きたい名所や都道府県などで検索して、自分の知らない世界に出かけよう！！<br>いい旅になったら、ここでシェアしてね！
+        </p>
     </div>
     
+    <!--ここに画像を入れる-->
+        
     <div class="row mt-4">
-        <div class="col-12 col-md-6">画像</div>
         <div class="col-12 col-md-6 description">
-            <h1>行きたい場所を検索してみよう！！</h1>
+            <h1>行きたい場所を検索してみよう！</h1>
             <p>地名で検索して、ほかの人がシェアしている画像や感想を見ることができます。</p>
         </div>
-    </div>
-    
-    <div class="row mt-4">
         <div class="col-12 col-md-6 description">
             <h1>お気に入りの場所を共有しよう！</h1>
             <p>ログインして、今まで行ったお気に入りの場所を共有できます。画像や評価や感想など他の人にどのような場所か説明しましょう。</p>
         </div>
-        <div class="col-12 col-md-6">画像</div>
     </div>
     
     <div class="row mt-4">
-        <div class="col-12 col-md-6">画像</div>
         <div class="col-12 col-md-6 description">
-            <h1>予定表を作ろう！！</h1>
+            <h1>グループを作って計画を立てよう！</h1>
+            <p>旅行に行くメンバーでグループを作り、旅行の準備ができます。みんなで予定を共有しよう。</p>
+        </div>
+        <div class="col-12 col-md-6 description">
+            <h1>予定表を作ろう！</h1>
             <p>これから行く旅行の予定を立てれます。</p>
         </div>
     </div>

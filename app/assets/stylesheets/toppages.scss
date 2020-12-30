@@ -1,8 +1,8 @@
 // Place all the styles related to the toppages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.fade-img {
-    // position: relative;
+.fade-img{
+    position: relative;
 }
 .fade-img img {
     width: 100%;
@@ -10,8 +10,13 @@
     opacity: 0.6;
 }
 
-table{
-    margin: 0;
+.find{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
 
 
@@ -26,6 +31,6 @@ footer small{
 }
 .description h1{
     color: #484848;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
 }

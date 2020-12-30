@@ -3,7 +3,6 @@
 
 $(function() {
     var nav = $('.left');
-    console.log(nav);
     //navの位置    
     var navTop = nav.offset().top;
     //スクロールするたびに実行
