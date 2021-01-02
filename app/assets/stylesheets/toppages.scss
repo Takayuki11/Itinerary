@@ -18,6 +18,9 @@
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+.search {
+    width: 300px;
+}
 
 
 
@@ -33,4 +36,20 @@ footer small{
     color: #484848;
     font-size: 28px;
     font-weight: bold;
+}
+
+
+
+/* スマホ画面用のCSS */
+@media screen and (max-width:500px) { 
+    .search {
+        width: 180px;
+        height: 25px;
+    }
+    .btn-search {
+        padding: .25rem .5rem;
+        font-size: 13px;
+        line-height: 1.5;
+        border-radius: .2rem;
+    }
 }

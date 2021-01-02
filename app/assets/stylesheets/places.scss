@@ -2,7 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.picture-set {
+    position: relative;
+}
 
+.fuji {
+    width: 100%;
+    height: auto;
+}
+
+.newest-post {
+    font-size: 50px;
+    color: #f5f5f5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.left-side {
+    transition: .3s;
+}
 .fixed {
     position: fixed;
+    top: 0;
+    transition: .3s;
+    padding-top: 130px;
+}
+
+.place {
+    list-style: none;
+    height: 400px;
+}
+
+.place:hover {
+    background-color:  #f5f5f5;
+}
+
+
+/* スマホ画面用のCSS */
+@media screen and (max-width:500px) { 
+    .newest-post {
+        font-size: 20px;
+        color: #f5f5f5;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+    .left-side {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .fixed {
+        position: initial;
+        top: initial;
+        transition: initial;
+        padding-top: initial;
+    }
 }

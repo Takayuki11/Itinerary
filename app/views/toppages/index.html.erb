@@ -3,19 +3,19 @@
 
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
         <div class="find text-center">
-            <div class="form-group" style="width: 300px;">
-                <%= f.text_field :spot, :placeholder => "Spot your place!!", class: 'form-control' %>
+            <div class="form-group">
+                <%= f.text_field :spot, :placeholder => "Spot your place!!", class: 'search form-control' %>
             </div>
         
-            <%= f.submit 'Search', class: 'btn btn-primary' %>
+            <%= f.submit 'Search', class: 'btn btn-primary btn-search' %>
         </div>
     <% end %>
 </div>
 
-<div class="container mx-auto" style="width: 80vw">
+<div class="container mx-auto" style="width: 90vw">
     
     <div class="text-center mt-4 description">
-        <h1>旅好きが集まる場所</h2>
+        <h1>旅好きが集まる場所</h1>
         <p class="mt-4">
             Itineraryは旅好きが今までに行ったお気に入りの場所を共有する場所です。
             みなさんの旅を思い出の残る楽しい旅にできるようサポートします。
