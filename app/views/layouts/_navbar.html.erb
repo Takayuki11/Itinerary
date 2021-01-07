@@ -1,5 +1,9 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-info">
-    <a class="navbar-brand" href="/">Itinerary</a>
+    <% if current_user %>
+        <%= link_to "Itinerary", places_path, class: "text-white" %>
+    <% else %>
+        <%= link_to "Itinerary", root_path, class: "text-white" %>
+    <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,7 +12,10 @@
         <ul class="navbar-nav">
             <% if logged_in? %>
                 <li class="nav-item"><%= link_to "share your place", new_place_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "Logout", logout_path, class: "nav-link", method: :delete %></li>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-item"><%= link_to "Profile", user_path(current_user) %></li>
+                    <li class="dropdown-item"><%= link_to "Logout", logout_path, method: :delete %></li>
             <% else %>
                 <li class="nav-item"><%= link_to "Sign up", signup_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "Login", login_path, class: "nav-link" %></li>

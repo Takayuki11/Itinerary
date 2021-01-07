@@ -13,7 +13,7 @@
                     <div class="form-group" style="width: 280px;">
                         <%= f.text_field :spot, :placeholder => "Spot your place!!", class: 'form-control' %>
                     </div>
-        
+                    
                     <%= f.submit 'Search', class: 'btn btn-primary' %>
                 <% end %>
             </div>
@@ -21,17 +21,22 @@
         <div class="col-12 col-md-9">
             <ul>
                 <% @places.each do |place| %>
-                    <li class="place border-bottom">
-                        <div class="d-flex">
-                            <div class="col-4">画像</div>
-                            <div class="col-8">
-                                <p><%= place.spot %></p>
-                                <p><%= place.address %></p>
-                                <p style="word-wrap: break-word;"><%= place.detail %></p>
+                    <%= link_to (place_path(place)) do%>
+                        <li class="place border-bottom">
+                            <div class="d-flex">
+                                <div class="col-4">
+                                    画像
+                                </div>
+                                <div class="col-8">
+                                    <p><%= place.spot %></p>
+                                    <p><%= place.address %></p>
+                                    <p style="word-wrap: break-word;"><%= place.detail %></p>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    <% end %>
                 <% end %>
+                <%= paginate @places %>
             </ul>
         </div>
     </div>
