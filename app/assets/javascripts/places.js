@@ -20,6 +20,15 @@ const getTop = () => {
             });
         }
     });
+    
 };
 
-$(window).on("load", getTop)
+$(window).on("load", getTop);
+
+// ページネーションしたときにgetTopが機能するようにするため
+// 画像を読み込んだ後に要素の位置を取得するため
+$(window).on("load", function(){
+    $(document).on('turbolinks:load', getTop);    
+});
+
+

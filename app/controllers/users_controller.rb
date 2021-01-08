@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   
+  def index
+    @users = User.all
+  end
+  
   def show
     @user = User.find(params[:id])
   end
@@ -25,6 +29,16 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:success] = "ユーザーを削除しました。"
     redirect_to root_url
+  end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers
   end
   
   private
