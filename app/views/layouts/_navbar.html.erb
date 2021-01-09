@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-info">
     <% if current_user %>
-        <%= link_to "Itinerary", places_path, class: "text-white" %>
+        <%= link_to "Itinerary", places_path, class: "text-white", data: {"turbolinks" => false} %>
     <% else %>
         <%= link_to "Itinerary", root_path, class: "text-white" %>
     <% end %>

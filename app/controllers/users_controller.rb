@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @places = @user.places
+    counts(@user)
   end
   
   def new
