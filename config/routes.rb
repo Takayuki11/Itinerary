@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'favorites/create'
+  get 'favorites/destroy'
   get 'relationships/create'
   get 'relationships/destroy'
   get 'toppages/index'
@@ -15,10 +17,13 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :likes
     end
   end
   
   resources :relationships, only: [:create, :destroy]
+  
+  resources :favorites, only: [:create, :destroy]
   
   resources :places, only: [:index, :show, :new, :create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

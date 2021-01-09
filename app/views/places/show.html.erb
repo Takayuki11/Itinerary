@@ -1,3 +1,4 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
+<%= render "favorites/favorite_button", other_place: @place %>
 <%= link_to "削除", @place, method: :delete%>
