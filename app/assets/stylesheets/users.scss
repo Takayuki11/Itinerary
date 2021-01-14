@@ -1,3 +1,126 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.set-pictures {
+    position: relative;
+    margin: 0 auto 100px auto;
+    max-width: 1110px;
+}
+.view {
+    width: 100%;
+    max-width: 1110px;
+    height: 350px;
+    object-fit: cover;
+    cursor: pointer;
+    background-color: #89BDDE;
+}
+.other-user-view {
+    width: 100%;
+    max-width: 1110px;
+    height: 350px;
+    object-fit: cover;
+}
+.other-view {
+    width: 100%;
+    max-width: 1110px;
+    height: 350px;
+    background-color: #89BDDE;
+}
+.view-text {
+    display: none;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.camera-icon {
+    font-size: 80px;
+}
+.profile {
+    position: absolute;
+    top: 270px;
+    left: 50px;
+}
+.adjust-image {
+    overflow: hidden;
+    border: 5px solid white;
+    border-radius: 50%;
+    position: relative;
+}
+.user-image{
+    width: 100%;
+    max-width: 160px;
+    height: 160px;
+}
+.other-user-image {
+    width: 100%;
+    max-width: 160px;
+    height: 160px;
+}
+.user-image-text {
+    font-size: 7px;
+    display: none;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.mini-camera-icon {
+    font-size: 40px;
+}
+.edit-button {
+    font-size: 12px;
+}
+.comments {
+    word-wrap: break-word;
+}
+
+
+/* スマホ(iPhone6,7,8)画面用のCSS */
+@media screen and (max-width:375px) {
+    .set-view {
+        margin-bottom: 60px;
+    }
+    .view {
+        width: 100%;
+        max-width: 1110px;
+        height: 150px;
+        object-fit: cover;
+        position: relative;
+    }
+    .other-view {
+        width: 100%;
+        max-width: 1110px;
+        height: 150px;
+        background-color: #89BDDE;
+    }
+    .other-user-view {
+        width: 100%;
+        max-width: 1110px;
+        height: 150px;
+    }
+    .profile {
+        position: absolute;
+        top: 110px;
+        left: 20px;
+    }
+    .user-image{
+        width: 100%;
+        max-width: 90px;
+        height: 90px;
+        object-fit: cover;
+    }
+    .other-user-image{
+        width: 100%;
+        max-width: 85px;
+        height: 85px;
+        object-fit: cover;
+    }
+}

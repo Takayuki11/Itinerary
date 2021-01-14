@@ -7,7 +7,6 @@ const getTop = () => {
             var nav = $(".left-side");
             //navの位置
             var navTop = nav.offset().top;
-            console.log(navTop);
             //スクロールするたびに実行
             $(window).scroll(function () {
                 var winTop = $(this).scrollTop();

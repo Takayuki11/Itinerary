@@ -19,6 +19,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :find_favorites, through: :favorites, source: :place, dependent: :destroy
   
+  # 画像を表示
+  mount_uploader :view, ImageUploader
+  mount_uploader :image, ImageUploader
+  
   
   # フォローのメソッド
   def follow(other_user)

@@ -1,24 +1,83 @@
-<div class="container mx-auto" style="width: 90vw">
-    <%= @user.name %>
-    
-    <% unless current_user == @user %>
-        <% if current_user.following?(@user) %>
-            <%= form_with(model: current_user.relationships.find_by(follow_id: @user.id), local: true, method: :delete) do |f| %>
-                <%= hidden_field_tag :follow_id, @user.id %>
-                <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+<div class="set-pictures">
+    <% if @user == current_user %>
+        <div class="set-view">
+            <%= link_to (edit_user_path(current_user)) do %>
+                <% if @user.view? %>
+                    <%= image_tag @user.view.thumb50.url, class: "view" %>
+                <% else %>
+                    <div class="view"></div>
+                <% end %>
+                <p class="view-text text-center"><i class="fas fa-camera camera-icon"></i><br>自分の好きな景色の写真をあげよう！ (推奨サイズ : 1110px × 350px)</p>
             <% end %>
+        </div>
+    <% else %>
+        <% if @user.view? %>
+            <%= image_tag @user.view.thumb50.url, class: "other-user-view" %>
         <% else %>
-            <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
-                <%= hidden_field_tag :follow_id, @user.id %>
-                <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
-            <% end %>
+            <div class="other-view"></div>
         <% end %>
     <% end %>
     
+    
+    <div class="profile text-center">
+        <div class="adjust-image">
+            <% if @user == current_user %>
+                <div class="set-user-image">
+                    <%= link_to (edit_user_path(current_user)) do %>
+                        <% if @user.image? %>
+                            <%= image_tag @user.image.thumb.url, class: "user-image" %>
+                        <% else %>
+                            <%= image_tag "default_profile_icon.jpg", class: "user-image" %>
+                        <% end %>
+                        <p class="user-image-text"><i class="fas fa-camera mini-camera-icon"></i><br>プロフィール画像の変更</p>   
+                    <% end %>
+                </div>
+            <% else %>
+                <% if @user.image? %>
+                    <%= image_tag @user.image.thumb.url, class: "user-image" %>
+                <% else %>
+                    <%= image_tag "default_profile_icon.jpg", class: "other-user-image" %>
+                <% end %>
+            <% end %>
+        </div>
+        
+        <h1><%= @user.name %></h1>
+    </div>
+</div>    
+
+<div class="container mx-auto" style="width: 90vw">
+    
+    <div class="d-flex flex-row-reverse">
+        <% if current_user == @user %>
+            <%= link_to "プロフィール編集", edit_user_path, class: "btn btn-success edit-button", data: {"turbolinks" => false} %>    
+        <% end %>
+        
+        <% unless current_user == @user %>
+            <% if current_user.following?(@user) %>
+                <%= form_with(model: current_user.relationships.find_by(follow_id: @user.id), local: true, method: :delete) do |f| %>
+                    <%= hidden_field_tag :follow_id, @user.id %>
+                    <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
+                <% end %>
+            <% else %>
+                <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
+                    <%= hidden_field_tag :follow_id, @user.id %>
+                    <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+    
+    <div class="comments">
+        <%= @user.comments %>    
+    </div>
+    
+    
+    
+    
     <ul class="nav nav-tabs nav-justified mb-3">
         <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">投稿 <span class="badge badge-secondary"><%= @count_places %></span></a></li>
-        <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー <span class="badge badge-secondary"><%= @count_followings %></span></a></li>
-        <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー <span class="badge badge-secondary"><%= @count_followers %></span></a></li>
+        <li class="nav-item"><a href="<%= followings_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followings_user_path(@user)) %>">フォロー<span class="badge badge-secondary"><%= @count_followings %></span></a></li>
+        <li class="nav-item"><a href="<%= followers_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(followers_user_path(@user)) %>">フォロワー<span class="badge badge-secondary"><%= @count_followers %></span></a></li>
         <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">お気に入り<span class="badge badge-secondary"><%= @count_favorites %></span></a></li>
     </ul>
     <ul>
@@ -26,6 +85,6 @@
             <li>
                 <%= link_to follower.name, user_path(follower) %>
             </li>
-        <% end %>    
+        <% end %>
     </ul>
 </div>

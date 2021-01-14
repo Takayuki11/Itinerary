@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, only:[:index, :new, :create, :destroy]
+  before_action :correct_user, only:[:destroy]
   
   def index
     @places = Place.all.order(id: "DESC").page(params[:page]).per(10)
@@ -25,16 +26,22 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @place = Place.find(params[:id])
     @place.destroy
     flash[:success] = "投稿を削除しました。"
-    redirect_to @user
+    redirect_to user_path(current_user)
   end
   
   private
   
   def place_params
     params.require(:place).permit(:prefecture, :address, :spot, :detail, :rate)
+  end
+  
+  def correct_user
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 end

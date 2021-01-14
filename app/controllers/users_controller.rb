@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_user_logged_in, only:[:index, :show, :edit, :update, :destroy]
+  before_action :correct_user, only:[:edit, :update, :destroy]
   
   def index
     @users = User.all
@@ -23,6 +25,21 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = "ユーザの登録に失敗しました。"
       render :new
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(edit_params)
+      flash[:success] = "プロフィールを更新しました。"
+      redirect_to user_path(@user)
+    else
+      flash.now[:danger] = "プロフィールを更新できませんでした。"
+      render :edit
     end
   end
 
@@ -55,5 +72,16 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :gender, :email, :password, :password_confirmation)
+  end
+  
+  def edit_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :comments, :image, :view)
+  end
+  
+  def correct_user
+    user = User.find_by(id: params[:id])
+    unless user == current_user
+      redirect_to user_path(current_user)
+    end
   end
 end
