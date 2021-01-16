@@ -1,4 +1,19 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
-<%= render "favorites/favorite_button", other_place: @place %>
-<%= link_to "削除", @place, method: :delete%>
+
+<% if current_user.like?(@place) %>
+    <%= link_to favorite_path(place_id: @place.id), method: :delete do %>
+        <i class="fas fa-heart unlike-btn"><%= @likes_count %></i> 
+    <% end %>
+<% else %>
+    <%= link_to favorites_path(place_id: @place.id), method: :post do %>
+        <i class="far fa-heart like-btn"><%= @likes_count %></i> 
+    <% end %>
+<% end %>
+
+<% if @place.user_id == current_user.id %>
+    <p>
+        <%= link_to "削除", @place, method: :delete %>
+    </p>
+<% end %>
+

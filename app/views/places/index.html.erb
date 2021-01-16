@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-12 col-md-3">
             <div class="left-side">
+                <!--仮のinput-->
                 <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
                     <p class="mb-2">都道府県・地名で探す</p>
                     <div class="form-group" style="width: 280px;">
@@ -21,7 +22,7 @@
         <div class="col-12 col-md-9">
             <ul>
                 <% @places.each do |place| %>
-                    <%= link_to (place_path(place)) do%>
+                    <%= link_to (place_path(place)), data: {"turbolinks" => false} do%>
                         <li class="place border-bottom">
                             <div class="d-flex">
                                 <div class="col-4">
@@ -31,6 +32,7 @@
                                     <p><%= place.spot %></p>
                                     <p><%= place.address %></p>
                                     <p style="word-wrap: break-word;"><%= place.detail %></p>
+                                    
                                 </div>
                             </div>
                         </li>

@@ -4,10 +4,14 @@ class PlacesController < ApplicationController
   
   def index
     @places = Place.all.order(id: "DESC").page(params[:page]).per(10)
+    @places.each do |place|
+      @likes_count = Favorite.where(place_id: place.id).count
+    end
   end
   
   def show
     @place = Place.find(params[:id])
+    @likes_count = Favorite.where(place_id: @place.id).count
   end 
   
   def new
@@ -39,7 +43,7 @@ class PlacesController < ApplicationController
   end
   
   def correct_user
-    user = User.find(params[:id])
+    user = User.find_by(id: params[:id])
     unless user == current_user
       redirect_to user_path(current_user)
     end

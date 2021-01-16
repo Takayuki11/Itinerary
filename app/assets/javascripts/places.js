@@ -7,6 +7,7 @@ const getTop = () => {
             var nav = $(".left-side");
             //navの位置
             var navTop = nav.offset().top;
+            console.log(navTop);
             //スクロールするたびに実行
             $(window).scroll(function () {
                 var winTop = $(this).scrollTop();
@@ -27,7 +28,7 @@ $(window).on("load", getTop);
 // ページネーションしたときにgetTopが機能するようにするため
 // 画像を読み込んだ後に要素の位置を取得するため
 $(window).on("load", function(){
-    $(document).on('turbolinks:load', getTop);    
+    $(document).on('turbolinks:load', getTop);   
 });
 
 
