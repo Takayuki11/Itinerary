@@ -32,3 +32,23 @@ $(window).on("load", function(){
 });
 
 
+// 評価(Raty)
+document.addEventListener("turbolinks:load", function() {
+        
+        // 評価表示
+        $('.review-rating').raty({
+            readOnly: true,
+            score: function() {
+              return $(this).attr('data-score');
+            },
+            path: '/assets/'
+        });
+        
+        // 評価入力欄
+        $('#rating-form').raty({
+            path: '/assets/',
+            scoreName: 'place[rate]',
+            half: true,
+        });
+    
+});

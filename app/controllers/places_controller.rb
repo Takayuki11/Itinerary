@@ -43,8 +43,8 @@ class PlacesController < ApplicationController
   end
   
   def correct_user
-    user = User.find_by(id: params[:id])
-    unless user == current_user
+    @place = Place.find(params[:id])
+    unless @place.user_id == current_user.id
       redirect_to user_path(current_user)
     end
   end

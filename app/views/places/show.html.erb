@@ -1,6 +1,8 @@
 <h1>Places#show</h1>
 <p>Find me in app/views/places/show.html.erb</p>
 
+<p class="review-rating" data-score="<%= @place.rate %>"></p>
+
 <% if current_user.like?(@place) %>
     <%= link_to favorite_path(place_id: @place.id), method: :delete do %>
         <i class="fas fa-heart unlike-btn"><%= @likes_count %></i> 
