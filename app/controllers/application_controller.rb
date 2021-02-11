@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_search
   
   include SessionsHelper
     
@@ -16,4 +17,10 @@ class ApplicationController < ActionController::Base
     @count_followers = user.followers.count
     @count_favorites = user.favorites.count
   end
+  
+  def set_search
+    @q = Place.ransack(params[:q])
+    @Places = @q.result
+  end
+
 end

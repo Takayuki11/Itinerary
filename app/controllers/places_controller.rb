@@ -4,14 +4,16 @@ class PlacesController < ApplicationController
   
   def index
     @places = Place.all.order(id: "DESC").page(params[:page]).per(10)
-    @places.each do |place|
-      @likes_count = Favorite.where(place_id: place.id).count
-    end
+    # @places.each do |place|
+    #   @likes_count = Favorite.where(place_id: place.id).count
+    # end
   end
   
   def show
     @place = Place.find(params[:id])
     @likes_count = Favorite.where(place_id: @place.id).count
+    
+    @picture = @place.pictures.build
   end 
   
   def new
@@ -36,10 +38,14 @@ class PlacesController < ApplicationController
     redirect_to user_path(current_user)
   end
   
+  def search
+    @q = Place.ransack(params[:q])
+    @places = @q.result.page(params[:page]).per(10)
+  end
   private
   
   def place_params
-    params.require(:place).permit(:prefecture, :address, :spot, :detail, :rate)
+    params.require(:place).permit(:prefecture, :address, :spot, :detail, :rate, post_files_attributes: [:file])
   end
   
   def correct_user

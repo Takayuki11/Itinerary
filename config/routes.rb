@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   
   resources :favorites, only: [:create, :destroy]
   
-  resources :places, only: [:index, :show, :new, :create, :destroy]
+  # Picturesはまだ探索中
+  resources :places, only: [:index, :show, :new, :create, :destroy] do
+    get :search, on: :collection
+    resources :pictures, only: [:index, :create]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
